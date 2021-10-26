@@ -4,7 +4,7 @@ namespace School.API.Models
     {
         public AlunoDisciplina() { }
 
-        public AlunoDisciplina(int alunoId, Disciplina disciplinaId)
+        public AlunoDisciplina(int alunoId, int disciplinaId)
         {
             this.AlunoId = alunoId;
             this.DisciplinaId = disciplinaId;
@@ -12,7 +12,7 @@ namespace School.API.Models
 
         public int AlunoId { get; set; }
         public Aluno Aluno { get; set; }
-        public Disciplina DisciplinaId { get; set; }
+        public int DisciplinaId { get; set; }
         public Disciplina Disciplina { get; set; }
     }
 }
