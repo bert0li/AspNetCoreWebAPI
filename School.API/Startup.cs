@@ -29,7 +29,10 @@ namespace School.API
         {
             services.AddDbContext<SchoolContexto>(c => c.UseSqlite(Configuration.GetConnectionString("Desenv")));
 
-            services.AddControllers();
+            services.AddScoped<IRepository, Repository>();
+
+            services.AddControllers()
+                    .AddNewtonsoftJson(o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // Este método é chamado pelo tempo de execução. Use este método para configurar o pipeline de solicitação HTTP.
