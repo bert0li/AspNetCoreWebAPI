@@ -91,7 +91,7 @@ namespace School.API.Controllers
             _contexto.Remove(alunoPesquisa);
             _contexto.SaveChanges();
 
-            return Ok();
+            return Ok("Aluno deletado.");
         }
     }
 }
