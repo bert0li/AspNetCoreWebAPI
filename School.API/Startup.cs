@@ -106,7 +106,7 @@ namespace School.API
             //não estamos usando https nesse projeto
             //app.UseHttpsRedirection();
 
-            // Incicando para aplicação que vai ser usar o swagger
+            // Indicando para aplicação que vai ser usar o swagger
             app.UseSwagger()
                 .UseSwaggerUI(opcoes =>
                 {

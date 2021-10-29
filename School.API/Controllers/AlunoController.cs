@@ -10,7 +10,7 @@ using School.API.Models;
 namespace School.API.Controllers
 {
     /// <summary>
-    /// 
+    /// Controller Aluno
     /// </summary>
     [ApiController]
     [ApiVersion("1.0")]

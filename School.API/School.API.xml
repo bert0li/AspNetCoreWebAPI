@@ -6,7 +6,7 @@
     <members>
         <member name="T:School.API.Controllers.AlunoController">
             <summary>
-            
+            Controller Aluno
             </summary>
         </member>
         <member name="M:School.API.Controllers.AlunoController.#ctor(School.API.Data.IRepository,AutoMapper.IMapper)">
@@ -59,9 +59,62 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:School.API.Controllers.ProfessorController">
+            <summary>
+            Controller Professo
+            </summary>
+        </member>
+        <member name="M:School.API.Controllers.ProfessorController.Get">
+            <summary>
+            Método resposável por retornar todos os alunos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.ProfessorController.GetById(System.Int32)">
+            <summary>
+            Método responsável por retornar um professor por id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.ProfessorController.Post(School.API.Dto.ProfessorRegistrarDto)">
+            <summary>
+            Método responsável por inserir um novo aluno
+            </summary>
+            <param name="professorRegistrarDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.ProfessorController.Put(System.Int32,School.API.Dto.ProfessorRegistrarDto)">
+            <summary>
+            Método reponsável por atulizar aluno e retornar o novo professor
+            </summary>
+            <param name="id"></param>
+            <param name="professorRegistrarDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.ProfessorController.Patch(System.Int32,School.API.Dto.ProfessorRegistrarDto)">
+            <summary>
+            Método reponsável por atualizar uma parte do professor
+            </summary>
+            <param name="id"></param>
+            <param name="professorRegistrarDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.ProfessorController.Delete(System.Int32)">
+            <summary>
+            Método responsável por Deletar um professor
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:School.API.Dto.AlunoDto">
             <summary>
             DTOP de Aluno para retorno
+            </summary>
+        </member>
+        <member name="T:School.API.Dto.ProfessorDto">
+            <summary>
+            DTO de Professor para retorno
             </summary>
         </member>
     </members>

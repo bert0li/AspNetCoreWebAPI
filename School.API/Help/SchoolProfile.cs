@@ -8,6 +8,8 @@ namespace School.API.Help
     {
         public SchoolProfile()
         {
+            #region Aluno
+
             // Toda vez que estiver trabalhando com Aluno eu quero que ele seja mapeado para o AlunoDto
             CreateMap<Aluno, AlunoDto>()
                 .ForMember
@@ -26,6 +28,22 @@ namespace School.API.Help
             //CreateMap<Aluno, AlunoDto>().ReverseMap();
             
             CreateMap<Aluno, AlunoRegistrarDto>().ReverseMap();
+
+            #endregion
+            
+            #region Professor
+
+            CreateMap<Professor, ProfessorDto>()
+            .ForMember
+            (
+                destino => destino.Nome,
+                opcao => opcao.MapFrom(m => $"{m.Nome} {m.Sobrenome}")
+            )
+            .ReverseMap();
+
+            CreateMap<Professor, ProfessorRegistrarDto>().ReverseMap();
+
+            #endregion
         }
     }
 }
