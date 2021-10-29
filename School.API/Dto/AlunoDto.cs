@@ -2,6 +2,9 @@ using System;
 
 namespace School.API.Dto
 {
+    /// <summary>
+    /// DTOP de Aluno para retorno
+    /// </summary>
     public class AlunoDto
     {
         public int Id { get; set; }

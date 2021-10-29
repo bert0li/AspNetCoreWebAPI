@@ -9,19 +9,32 @@ using School.API.Models;
 
 namespace School.API.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class AlunoController : ControllerBase
     {
         public readonly IRepository _repo;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="repo"></param>
+        /// <param name="mapper"></param>
         public AlunoController(IRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Método resposável por retornar todos os alunos
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -30,6 +43,12 @@ namespace School.API.Controllers
             return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
         }
 
+
+        /// <summary>
+        /// Método responsável por retornar um aluno por id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         //[HttpGet("{id:int}")]
         [HttpGet("byId")] //QueryString
         public IActionResult GetById(int id)
@@ -56,6 +75,11 @@ namespace School.API.Controllers
         }
         */
 
+        /// <summary>
+        /// Método responsável por inserir um novo aluno
+        /// </summary>
+        /// <param name="alunoRegistrarDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(AlunoRegistrarDto alunoRegistrarDto)
         {
@@ -69,6 +93,12 @@ namespace School.API.Controllers
                 return BadRequest("Aluno não cadastrado.");
         }
 
+        /// <summary>
+        /// Método reponsável por atulizar aluno e retornar o novo aluno
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="alunoRegistrarDto"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Put(int id, AlunoRegistrarDto alunoRegistrarDto)
         {
@@ -86,6 +116,12 @@ namespace School.API.Controllers
                 return BadRequest("Não atualizado.");
         }
 
+        /// <summary>
+        /// Método reponsável por atualizar uma parte do aluno
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="alunoRegistrarDto"></param>
+        /// <returns></returns>
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, AlunoRegistrarDto alunoRegistrarDto)
         {
@@ -103,6 +139,11 @@ namespace School.API.Controllers
                 return BadRequest("Não atualizado.");
         }
 
+        /// <summary>
+        /// Método reponsável por deletar um aluno
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

@@ -7,7 +7,8 @@ using School.API.Models;
 namespace School.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ProfessorController : ControllerBase
     {
         private readonly IRepository _repo;

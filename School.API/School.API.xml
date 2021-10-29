@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>School.API</name>
+    </assembly>
+    <members>
+        <member name="T:School.API.Controllers.AlunoController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:School.API.Controllers.AlunoController.#ctor(School.API.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="repo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:School.API.Controllers.AlunoController.Get">
+            <summary>
+            Método resposável por retornar todos os alunos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.AlunoController.GetById(System.Int32)">
+            <summary>
+            Método responsável por retornar um aluno por id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.AlunoController.Post(School.API.Dto.AlunoRegistrarDto)">
+            <summary>
+            Método responsável por inserir um novo aluno
+            </summary>
+            <param name="alunoRegistrarDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.AlunoController.Put(System.Int32,School.API.Dto.AlunoRegistrarDto)">
+            <summary>
+            Método reponsável por atulizar aluno e retornar o novo aluno
+            </summary>
+            <param name="id"></param>
+            <param name="alunoRegistrarDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.AlunoController.Patch(System.Int32,School.API.Dto.AlunoRegistrarDto)">
+            <summary>
+            Método reponsável por atualizar uma parte do aluno
+            </summary>
+            <param name="id"></param>
+            <param name="alunoRegistrarDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.AlunoController.Delete(System.Int32)">
+            <summary>
+            Método reponsável por deletar um aluno
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:School.API.Dto.AlunoDto">
+            <summary>
+            DTOP de Aluno para retorno
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -17,6 +17,12 @@ namespace School.API.Data
         public DbSet<Disciplina> Disciplinas { get; set; }
         public DbSet<Professor> Professores { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //optionsBuilder.UseSqlite("");
+            base.OnConfiguring(optionsBuilder);
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<AlunoDisciplina>()
