@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using School.API.Help;
 using School.API.Models;
 
 namespace School.API.Data
@@ -47,6 +50,32 @@ namespace School.API.Data
             query = query.AsNoTracking().OrderBy(o => o.Id);
 
             return query.ToArray();
+        }
+
+        public async Task<PageList<Aluno>> GetAllAlunosAsync(ParametrosPagina parametrosPagina, bool incluirProfessor = false)
+        {
+            IQueryable<Aluno> query = _contexto.Alunos;
+
+            if (incluirProfessor)
+            {
+                query = query.Include(i => i.AlunosDisciplinas)
+                             .ThenInclude(t => t.Disciplina)
+                             .ThenInclude(t => t.Professor);
+            }
+
+            query = query.AsNoTracking().OrderBy(o => o.Id);
+
+            if (!string.IsNullOrEmpty(parametrosPagina.Nome))
+                query = query.Where(w => w.Nome.ToUpper().Contains(parametrosPagina.Nome.ToUpper()) || w.Sobrenome.ToUpper().Contains(parametrosPagina.Nome.ToUpper()));
+
+            if (parametrosPagina.Matricula > 0)
+                query = query.Where(w => w.Matricula == parametrosPagina.Matricula);
+
+            if (parametrosPagina.Ativo != null)
+                query = query.Where(w => w.Ativo == (parametrosPagina.Ativo != 0));
+
+            //return await query.ToListAsync();
+            return await PageList<Aluno>.CriarAsync(query, parametrosPagina.NumeroPagina, parametrosPagina.QuantidadeItens);
         }
 
         public Aluno[] GetAllAlunosByDisciplinaId(int id, bool incluirProfessor = false)

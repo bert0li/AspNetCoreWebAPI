@@ -4,6 +4,9 @@ using School.API.Models;
 
 namespace School.API.Help
 {
+    /// <summary>
+        /// Profile de Aluno e Professor
+        /// </summary>
     public class SchoolProfile : Profile
     {
         public SchoolProfile()

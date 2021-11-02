@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using School.API.Data;
 using School.API.Dto;
+using School.API.Help;
 using School.API.Models;
 
 namespace School.API.Controllers
@@ -19,12 +21,7 @@ namespace School.API.Controllers
     {
         public readonly IRepository _repo;
         private readonly IMapper _mapper;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="repo"></param>
-        /// <param name="mapper"></param>
+        
         public AlunoController(IRepository repo, IMapper mapper)
         {
             _repo = repo;
@@ -36,11 +33,14 @@ namespace School.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery] ParametrosPagina parametrosPagina)
         {
-            var alunos = _repo.GetAllAlunos(true);
-            
-            return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
+            var alunos = await _repo.GetAllAlunosAsync(parametrosPagina, true);
+            var alunosDto = _mapper.Map<IEnumerable<AlunoDto>>(alunos);
+
+            Response.AddPaginacao(alunos.PaginaAtual, alunos.QuantidadeItens, alunos.TotalContadorPagina, alunos.TotalPaginas);
+
+            return Ok(alunosDto);
         }
 
 

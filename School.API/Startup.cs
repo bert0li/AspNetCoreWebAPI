@@ -57,12 +57,12 @@ namespace School.API
             });
 
             // Pegando as ApiVersion(versões) das controllers 
-            var apiProviderDescricao = services.BuildServiceProvider().GetService<IApiVersionDescriptionProvider>();
+            var apiProviderDescricaoVersao = services.BuildServiceProvider().GetService<IApiVersionDescriptionProvider>();
 
-            // Configurando o swagger
+            // Configurando o serviço de documentação do Swagger
             services.AddSwaggerGen(o =>
             {
-                foreach (var descricao in apiProviderDescricao.ApiVersionDescriptions)
+                foreach (var descricao in apiProviderDescricaoVersao.ApiVersionDescriptions)
                 {
                     o.SwaggerDoc(
                     descricao.GroupName, // Nome da URL 
@@ -86,12 +86,13 @@ namespace School.API
                     });
                 }
 
+                //Obtendo o diretório e depois o nome do arquivo .xml de comentários
                 var xmlComentario = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"; // Criando o arq xml com o nome do Assembly
                 var xmlComentarioCaminho = Path.Combine(AppContext.BaseDirectory, xmlComentario); // Combinando o caminho com o arq xml
-                o.IncludeXmlComments(xmlComentarioCaminho); // Incluindo o arq xml
-            });
 
-            
+                if (Directory.Exists(xmlComentarioCaminho))
+                    o.IncludeXmlComments(xmlComentarioCaminho); // Incluindo o arq xml
+            });
         }
 
         // Este método é chamado pelo tempo de execução. Use este método para configurar o pipeline de solicitação HTTP.
@@ -106,16 +107,18 @@ namespace School.API
             //não estamos usando https nesse projeto
             //app.UseHttpsRedirection();
 
-            // Indicando para aplicação que vai ser usar o swagger
+            // Habilitar o middleware para servir o Swagger gerado como um endpoint JSON
+            // Especificando o Endpoint JSON Swagger.
             app.UseSwagger()
                 .UseSwaggerUI(opcoes =>
                 {
                     foreach (var descricao in apiVersionDescriptionProvider.ApiVersionDescriptions)
                     {
+                        // Especificando o Endpoint JSON Swagger.
                         opcoes.SwaggerEndpoint($"/swagger/{descricao.GroupName}/swagger.json", descricao.GroupName.ToUpperInvariant());
                     }
 
-                    opcoes.RoutePrefix = ""; // Quando não ser digitado nada no pré-fixo ele vai para essa URL
+                    opcoes.RoutePrefix = string.Empty; //Adicione algum proefixo da URL caso queira
                 });
 
             app.UseRouting();

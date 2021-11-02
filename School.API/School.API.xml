@@ -9,14 +9,7 @@
             Controller Aluno
             </summary>
         </member>
-        <member name="M:School.API.Controllers.AlunoController.#ctor(School.API.Data.IRepository,AutoMapper.IMapper)">
-            <summary>
-            
-            </summary>
-            <param name="repo"></param>
-            <param name="mapper"></param>
-        </member>
-        <member name="M:School.API.Controllers.AlunoController.Get">
+        <member name="M:School.API.Controllers.AlunoController.Get(School.API.Help.ParametrosPagina)">
             <summary>
             Método resposável por retornar todos os alunos
             </summary>
@@ -115,6 +108,17 @@
         <member name="T:School.API.Dto.ProfessorDto">
             <summary>
             DTO de Professor para retorno
+            </summary>
+        </member>
+        <member name="T:School.API.Help.PageList`1">
+            <summary>
+            Recurso responsável por páginar nossas entidades
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:School.API.Help.SchoolProfile">
+            <summary>
+            Profile de Aluno e Professor
             </summary>
         </member>
     </members>
